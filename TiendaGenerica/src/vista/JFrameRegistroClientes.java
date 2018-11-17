@@ -1,5 +1,6 @@
 package vista;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -7,121 +8,115 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class JFrameRegistroClientes extends JFrame
+public class JFrameRegistroClientes extends JFrame 
 {
 
 	public static final String AGREGAR = "Agregar";
 	public static final String ELIMINAR = "Eliminar";
-	private JButton agregar, eliminar, borrar;/*declaramos el objeto Boton*/
+	private static final long serialVersionUID = 1L;
+	private JButton agregar, eliminar, borrar;
 	private JLabel labelTitulo, mensaje;
-	private JTextField textCed, textNombre, textDireccion, textTelefono,textCorreo;
-	private JLabel cedula, nombre, direccion, telefono, correo;
+	private JTextField textCedula, textNombre, textDireccion, textTelefono,textEmail;
+	private JLabel ced, nom, direc, tel, email;
 	private DefaultTableModel model;
-	private JTable miTabla2 = new JTable();// creamos la instancia de la tabla
-
-
-	public JFrameRegistroClientes()
-	{
-
+	private JTable miTabla2 = new JTable();
+	
+	
+	public JFrameRegistroClientes(){
+		
 		setSize(480, 500);
-		setTitle("CoDejaVu : Componentes JTable");
+		setTitle("Clientes");
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
+		
+		ced = new JLabel();
+		ced.setText("Cedula");
+		ced.setBounds(20, 80, 80, 25);
+		add(ced);
 
+		nom = new JLabel();
+		nom.setText("Nombre");
+		nom.setBounds(20, 120, 80, 25);
+		add(nom);
+		
+		direc = new JLabel();
+		direc.setText("Dirección");
+		direc.setBounds(290, 120, 80, 25);
+		add(direc);
 
+		tel = new JLabel();
+		tel.setText("Telefono");
+		tel.setBounds(290, 160, 80, 25);
+		add(tel);
+		
+		email = new JLabel();
+		email.setText("Email");
+		email.setBounds(20, 160, 80, 25);
+		add(email);
 
-		cedula = new JLabel();
-		cedula.setText("Cedula");
-		cedula.setBounds(20, 80, 80, 25);
-		add(cedula);
-
-		nombre = new JLabel();
-		nombre.setText("Nombre");
-		nombre.setBounds(20, 120, 80, 25);
-		add(nombre);
-
-		telefono = new JLabel();
-		telefono.setText("Telefono");
-		telefono.setBounds(285, 160, 80, 25);
-		add(telefono);
-
-		direccion = new JLabel();
-		direccion .setText("Direccion");
-		direccion .setBounds(285, 120, 80, 25);
-		add(direccion);
-
-		correo = new JLabel();
-		correo.setText("Correo");
-		correo.setBounds(20, 160, 80, 25);
-		add(correo);
-
-		textCed = new JTextField();
-		textCed.setBounds(80, 80, 80, 25);
-		add(textCed);
+		textCedula = new JTextField();
+		textCedula.setBounds(80, 80, 80, 25);
+		add(textCedula);
 
 		textNombre = new JTextField();
 		textNombre.setBounds(80, 120, 190, 25);
 		add(textNombre);
+		
+		textDireccion = new JTextField();
+		textDireccion.setBounds(340, 120, 80, 25);
+		add(textDireccion);
+
 
 		textTelefono = new JTextField();
 		textTelefono.setBounds(340, 160, 80, 25);
 		add(textTelefono);
 
-		textDireccion = new JTextField();
-		textDireccion.setBounds(340, 120, 80, 25);
-		add(textDireccion);
-
-		textCorreo = new JTextField();
-		textCorreo.setBounds(80, 160, 190, 25);
-		add(textCorreo);
-
-
-
-		/*Propiedades del boton, lo instanciamos, posicionamos y
-		 * activamos los eventos*/
+		
+		textEmail = new JTextField();
+		textEmail.setBounds(80, 160, 190, 25);
+		add(textEmail);
+		
+		
 		agregar= new JButton();
 		agregar.setText("Agregar");
-		agregar.setBounds(50, 230, 80, 23);
-
-
+		agregar.setBounds(20, 210, 80, 23);
+		agregar.setActionCommand(AGREGAR);
+		
 		eliminar= new JButton();
 		eliminar.setText("Eliminar");
-		eliminar.setBounds(330, 230, 80, 23);
-
-
+		eliminar.setBounds(300, 210, 80, 23);
+		eliminar.setActionCommand(ELIMINAR);
+		
 		borrar= new JButton();
 		borrar.setText("Borrar Lista");
-		borrar.setBounds(170, 230, 120, 23);
-
-
-		/*Propiedades del Label, lo instanciamos, posicionamos y
-		 * activamos los eventos*/
+		borrar.setBounds(120, 210, 120, 23);
+		
 		labelTitulo= new JLabel();
 		labelTitulo.setFont(new java.awt.Font("Tahoma", 0, 20));
 		labelTitulo.setText("Registro de Clientes");
-		labelTitulo.setBounds(143, 10, 180, 43);
-
+		labelTitulo.setBounds(130, 20, 220, 43);
+		
 		mensaje= new JLabel();
 		mensaje.setBounds(20, 250, 280, 23);
-
+		
 		model = new DefaultTableModel();// definimos el objeto tableModel
 		miTabla2.setModel(model);
-		model.addColumn("Nº Documento");
+		model.addColumn("Cedula");
 		model.addColumn("Nombre");
-		model.addColumn("Direccion");
-		model.addColumn("Correo");
+		model.addColumn("Dirección");
 		model.addColumn("Telefono");
+		model.addColumn("Email");
 
 		JScrollPane miBarra2 = new JScrollPane();
 		miBarra2.setBounds(40, 300, 400, 130);
 		miBarra2.setViewportView(miTabla2);
-
-
-		/*Agregamos los componentes al Contenedor*/
+		
+		
 		add(labelTitulo);
 		add(agregar);
 		add(eliminar);
@@ -131,45 +126,47 @@ public class JFrameRegistroClientes extends JFrame
 		//add(scrollLista);
 		//contenedor.add(botonCam);
 
-
+	
 	}
 
-	public void agregarNombre() {
-		String cedula =textCed.getText();
-		String nombre=textNombre.getText();
-		String direccion =textDireccion.getText();
-		String correo=textCorreo.getText();
-		String telefono=textTelefono.getText();
-		Object[] o = {cedula, nombre, direccion, correo, telefono};
-		model.addRow(o);
-		//listaNombres.setModel(modelo);
+	public void agregarCliente() 
+	{		
+		String Cedula = getTextCedula().getText();
+		String Nombre = getTextNombre().getText();
+		String Direccion = getTextDireccion().getText();
+		String Telefono = getTextTelefono().getText();
+		String Email = getTextTelefono().getText();
+		Object[] o = {Cedula, Nombre, Direccion, Telefono, Email};
+		getModel().addRow(o);
 		limpiar();
+		getMensaje().setText("Se agregó un nuevo elemento");
 	}
+	
+	
 
-	public void eliminarNombre(int indice) {
+	public void eliminarCliente(int indice) {
 		if (indice>=0) {
 			model.removeRow(indice);	
 			mensaje.setText("Se eliminó un elemento en la posición "+indice);
 		}else{
 			JOptionPane.showMessageDialog(null, "Debe seleccionar un indice"
 					,"Error", JOptionPane.ERROR_MESSAGE);
-
-			mensaje.setText("NO se seleccionó ningún elemento");
+			
+				mensaje.setText("NO se seleccionó ningún elemento");
 		}
-
+		
 	}
-
-	private void borrarLista()
-	{
+	
+	public void borrarLista() {
 		//model.clear();
 	}
-	public void limpiar()
-	{
-		textCed.setText("");
+	
+	public void limpiar() {
+		textCedula.setText("");
 		textNombre.setText("");
 		textDireccion.setText("");
 		textTelefono.setText("");
-		textCorreo.setText("");
+		textEmail.setText("");
 	}
 
 	public JButton getAgregar() {
@@ -212,12 +209,12 @@ public class JFrameRegistroClientes extends JFrame
 		this.mensaje = mensaje;
 	}
 
-	public JTextField getTextCed() {
-		return textCed;
+	public JTextField getTextCedula() {
+		return textCedula;
 	}
 
-	public void setTextCed(JTextField textCed) {
-		this.textCed = textCed;
+	public void setTextCedula(JTextField textCedula) {
+		this.textCedula = textCedula;
 	}
 
 	public JTextField getTextNombre() {
@@ -244,52 +241,52 @@ public class JFrameRegistroClientes extends JFrame
 		this.textTelefono = textTelefono;
 	}
 
-	public JTextField getTextCorreo() {
-		return textCorreo;
+	public JTextField getTextEmail() {
+		return textEmail;
 	}
 
-	public void setTextCorreo(JTextField textCorreo) {
-		this.textCorreo = textCorreo;
+	public void setTextEmail(JTextField textEmail) {
+		this.textEmail = textEmail;
 	}
 
-	public JLabel getCedula() {
-		return cedula;
+	public JLabel getCed() {
+		return ced;
 	}
 
-	public void setCedula(JLabel cedula) {
-		this.cedula = cedula;
+	public void setCed(JLabel ced) {
+		this.ced = ced;
 	}
 
-	public JLabel getNombre() {
-		return nombre;
+	public JLabel getNom() {
+		return nom;
 	}
 
-	public void setNombre(JLabel nombre) {
-		this.nombre = nombre;
+	public void setNom(JLabel nom) {
+		this.nom = nom;
 	}
 
-	public JLabel getDireccion() {
-		return direccion;
+	public JLabel getDirec() {
+		return direc;
 	}
 
-	public void setDireccion(JLabel direccion) {
-		this.direccion = direccion;
+	public void setDirec(JLabel direc) {
+		this.direc = direc;
 	}
 
-	public JLabel getTelefono() {
-		return telefono;
+	public JLabel getTel() {
+		return tel;
 	}
 
-	public void setTelefono(JLabel telefono) {
-		this.telefono = telefono;
+	public void setTel(JLabel tel) {
+		this.tel = tel;
 	}
 
-	public JLabel getCorreo() {
-		return correo;
+	public JLabel getEmail() {
+		return email;
 	}
 
-	public void setCorreo(JLabel correo) {
-		this.correo = correo;
+	public void setEmail(JLabel email) {
+		this.email = email;
 	}
 
 	public DefaultTableModel getModel() {
@@ -308,6 +305,9 @@ public class JFrameRegistroClientes extends JFrame
 		this.miTabla2 = miTabla2;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 }
-
 

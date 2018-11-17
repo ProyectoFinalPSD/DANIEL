@@ -48,8 +48,8 @@ public class Controlador implements ActionListener {
 		gui.getRpv().getEliminar().addActionListener(this);
 		gui.getRcl().getAgregar().addActionListener(this);
 		gui.getRcl().getEliminar().addActionListener(this);
-		gui.getRpro().getAgregar().addActionListener(this);
-		gui.getRpro().getAgregar().addActionListener(this);
+		/*gui.getRpro().getAgregar().addActionListener(this);
+		gui.getRpro().getAgregar().addActionListener(this);*/
 		
 		
 		
@@ -144,11 +144,11 @@ public class Controlador implements ActionListener {
 	{
 		if (e.getActionCommand().equals(gui.getRcl().getAgregar()))
 		{
-			gui.getRcl().agregarNombre();
+			gui.getRcl().agregarCliente();
 		}
 		else if (e.getActionCommand().equals(gui.getRcl().getEliminar()))
 		{
-			gui.getRcl().eliminarNombre(gui.getRcl().getMiTabla2().getSelectedRow());
+			gui.getRcl().eliminarCliente(gui.getRcl().getMiTabla2().getSelectedRow());
 		}
 		
 	}

@@ -28,7 +28,7 @@ public class JFrameRegistroProductos extends JFrame
 	{
 		
 		setSize(480, 500);
-		setTitle("");
+		setTitle("Productos");
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -125,14 +125,13 @@ public class JFrameRegistroProductos extends JFrame
 	}
 
 	public void agregarProducto() 
-	{
-		
-		String Codigo = getTextCodigo().getText();
-		String Nombre = getTextNombre().getText();
-		String NITP = getTextNITP().getText();
-		String PrecioCompra = getTextPrecioCompra().getText();
-		String PrecioVenta = getTextPrecioVenta().getText();
-		Object[] o = {Codigo, Nombre, NITP, PrecioCompra, PrecioVenta};
+	{	
+		String cod = getTextCodigo().getText();
+		String nom = getTextNombre().getText();
+		String nit = getTextNITP().getText();
+		String preCom = getTextPrecioCompra().getText();
+		String preVen = getTextPrecioVenta().getText();
+		Object[] o = {cod,nom, nit, preCom, preVen};
 		getModel().addRow(o);
 		limpiar();
 		getMensaje().setText("Se agregó un nuevo elemento");

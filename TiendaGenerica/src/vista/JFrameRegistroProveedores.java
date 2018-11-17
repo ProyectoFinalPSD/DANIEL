@@ -28,7 +28,7 @@ public class JFrameRegistroProveedores extends JFrame
 	public JFrameRegistroProveedores(){
 		
 		setSize(480, 500);
-		setTitle("");
+		setTitle("Proveedores");
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
