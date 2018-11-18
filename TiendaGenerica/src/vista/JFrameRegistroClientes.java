@@ -14,15 +14,16 @@ import javax.swing.table.DefaultTableModel;
 public class JFrameRegistroClientes extends JFrame 
 {
 
-	public static final String AGREGAR = "Agregar";
-	public static final String ELIMINAR = "Eliminar";
+	public static final String AGREGAR = "AgregarCl";
+	public static final String ELIMINAR = "EliminarCl";
+	public static final String SELECCIONAR = "SeleccionarCl";
 	private static final long serialVersionUID = 1L;
-	private JButton agregar, eliminar, borrar;
+	private JButton agregar, eliminar, seleccionar;
 	private JLabel labelTitulo, mensaje;
 	private JTextField textCedula, textNombre, textDireccion, textTelefono,textEmail;
 	private JLabel ced, nom, direc, tel, email;
 	private DefaultTableModel model;
-	private JTable miTabla2 = new JTable();
+	private JTable miTabla2;
 	
 	
 	public JFrameRegistroClientes(){
@@ -31,7 +32,6 @@ public class JFrameRegistroClientes extends JFrame
 		setTitle("Clientes");
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
 		
 		ced = new JLabel();
@@ -46,7 +46,7 @@ public class JFrameRegistroClientes extends JFrame
 		
 		direc = new JLabel();
 		direc.setText("Dirección");
-		direc.setBounds(290, 120, 80, 25);
+		direc.setBounds(282, 120, 80, 25);
 		add(direc);
 
 		tel = new JLabel();
@@ -89,12 +89,13 @@ public class JFrameRegistroClientes extends JFrame
 		
 		eliminar= new JButton();
 		eliminar.setText("Eliminar");
-		eliminar.setBounds(300, 210, 80, 23);
+		eliminar.setBounds(350, 210, 80, 23);
 		eliminar.setActionCommand(ELIMINAR);
 		
-		borrar= new JButton();
-		borrar.setText("Borrar Lista");
-		borrar.setBounds(120, 210, 120, 23);
+		seleccionar = new JButton();
+		seleccionar.setText("Seleccionar Cliente para venta");
+		seleccionar.setBounds(120, 210, 220, 23);
+		seleccionar.setActionCommand(SELECCIONAR);
 		
 		labelTitulo= new JLabel();
 		labelTitulo.setFont(new java.awt.Font("Tahoma", 0, 20));
@@ -105,6 +106,7 @@ public class JFrameRegistroClientes extends JFrame
 		mensaje.setBounds(20, 250, 280, 23);
 		
 		model = new DefaultTableModel();// definimos el objeto tableModel
+		miTabla2 = new JTable();
 		miTabla2.setModel(model);
 		model.addColumn("Cedula");
 		model.addColumn("Nombre");
@@ -120,7 +122,7 @@ public class JFrameRegistroClientes extends JFrame
 		add(labelTitulo);
 		add(agregar);
 		add(eliminar);
-		add(borrar);
+		add(seleccionar);
 		add(mensaje);
 		add(miBarra2);
 		//add(scrollLista);
@@ -157,8 +159,13 @@ public class JFrameRegistroClientes extends JFrame
 		
 	}
 	
-	public void borrarLista() {
-		//model.clear();
+	public void seleccionarCliente(int i) {
+		if(i >= 0)
+		{
+			for (int j = 0; j < 5; j++) {
+				getModel().getValueAt(i, j);	
+			}
+		}
 	}
 	
 	public void limpiar() {
@@ -185,14 +192,8 @@ public class JFrameRegistroClientes extends JFrame
 		this.eliminar = eliminar;
 	}
 
-	public JButton getBorrar() {
-		return borrar;
-	}
-
-	public void setBorrar(JButton borrar) {
-		this.borrar = borrar;
-	}
-
+	
+	
 	public JLabel getLabelTitulo() {
 		return labelTitulo;
 	}
@@ -308,6 +309,13 @@ public class JFrameRegistroClientes extends JFrame
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public JButton getSeleccionar() {
+		return seleccionar;
+	}
+
+	public void setSeleccionar(JButton seleccionar) {
+		this.seleccionar = seleccionar;
+	}
 	
 }
-

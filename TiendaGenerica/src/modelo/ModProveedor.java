@@ -11,18 +11,23 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-public class ModProveedor {
-
+public class ModProveedor 
+{
+	//Atributos Declaración
 	private ArrayList<Proveedor>proveedores;
+	private Proveedor p;
 	private int numProveedores;
 
 
 	public ModProveedor()
 	{
+		//Inicialización
 		proveedores = new ArrayList<>();
 		numProveedores = 0;
 	}
 
+	/*Método auxiliar de tipo booleano que permite saber si existe o no un proveedor por su NIT si es
+	igual a la que esta por parametro*/
 	public boolean existeProveedor(String pNit)
 	{
 		boolean existe = false;
@@ -36,7 +41,12 @@ public class ModProveedor {
 
 		return existe;
 	}
-	public boolean agregarProveedor(String pNit, String pNombre, String pDireccion, String pTelefono, String pCiudad, String nombreTienda)
+	
+	/*
+	 * Método de tipo booleano que permite agregar un proveedor con ayuda del método auxiliar anterior
+	 * agregar un proveedor parametros necesarios para registrarlo
+	 */
+	public boolean agregarProveedor(String pNit, String pNombre, String pDireccion, String pTelefono, String pCiudad)
 	{
 		boolean agregar = false;
 		boolean existe = existeProveedor(pNit);
@@ -47,9 +57,14 @@ public class ModProveedor {
 			numProveedores ++;	
 			agregar = true;
 		}
-			leerArchivo(pNit, pNombre, pDireccion, pTelefono, pCiudad, nombreTienda);
+			leerArchivo(pNit, pNombre, pDireccion, pTelefono, pCiudad);
 			return agregar;
 	}
+	
+	/*
+	 * Método que borra a un proveedor por su NIT, si su NIT es igual al que está establecido
+	 * por parámetro, lo borra.
+	 */
 	public String eliminarProveedor(String pNit)
 	{
 		String eliminar = "";
@@ -63,6 +78,10 @@ public class ModProveedor {
 		}
 		return eliminar;
 	}
+	
+	/*
+	 * Método que actualiza los datos de un proveedor por parámetros
+	 */
 	public void actualizarProveedor(String pNit, String pNombre, String pDireccion, String pTelefono, String pCiudad)
 	{
 
@@ -78,11 +97,16 @@ public class ModProveedor {
 
 		}
 	}
-	public void leerArchivo(String pNit, String pNombre, String pDireccion, String pTelefono, String pCiudad, String nombreTienda)
+	
+	/*
+	 * Método que lee una ruta donde está un file que contiene a los proveedore registrados
+	 */
+	public void leerArchivo(String pNit, String pNombre, String pDireccion, String pTelefono, String pCiudad)
 	{
-		File in = new File("./"+nombreTienda+"/proveedor"+pNombre+".txt");
-		File out = new File("./"+nombreTienda+"/proveedor"+pNombre+".txt");
 		try {
+			File in = new File("./data/proveedor"+pNombre+".txt");
+			File out = new File("./data/proveedor"+pNombre+".txt");
+			
 			in.createNewFile();
 			out.createNewFile();
 			FileReader fr = new FileReader(in);
@@ -91,21 +115,50 @@ public class ModProveedor {
 			PrintWriter pw = new PrintWriter(fw);
 			
 			String linea = br.readLine();
-			while(linea==null){
+			
 			for (int i = 0; i < 1; i++) {
+				
 				pw.println("Nombre: "+pNombre);
 				pw.println("NIT: "+pNit);
 				pw.println("Direccion: "+pDireccion);
 				pw.println("Telefono: "+pTelefono);
 				pw.println("Ciudad: "+pCiudad);
-				
-			}
+		
+		
 			linea = br.readLine();
 			fr.close();
 			fw.close();
-			}
-		} catch (Exception e) {
-			System.out.println("Error");
+			
+		}
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Proveedor Agregado");
 		}
 	}
+
+	//Getters y Setters: Permiten para tener acceso de los atributos en otras clases
+	public ArrayList<Proveedor> getProveedores() {
+		return proveedores;
+	}
+
+	public void setProveedores(ArrayList<Proveedor> proveedores) {
+		this.proveedores = proveedores;
+	}
+
+	public Proveedor getP() {
+		return p;
+	}
+
+	public void setP(Proveedor p) {
+		this.p = p;
+	}
+
+	public int getNumProveedores() {
+		return numProveedores;
+	}
+
+	public void setNumProveedores(int numProveedores) {
+		this.numProveedores = numProveedores;
+	}
+	
+	
 }

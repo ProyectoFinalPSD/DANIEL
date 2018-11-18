@@ -2,13 +2,13 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
 import modelo.Mundo;
 import vista.MundoVista;
-import vista.JFrameCuotas;
 
 
 public class Controlador implements ActionListener {
@@ -16,25 +16,22 @@ public class Controlador implements ActionListener {
 	private MundoVista gui;
 	private Mundo m;
 	
-	
 	public Controlador()
 	{
 		m = new Mundo();
 		gui = new MundoVista();
 		
-		gui.getChe().setVisible(false);
+		
 		gui.getVp().setVisible(true);
-		gui.getRcl().setVisible(false);
-		gui.getRpro().setVisible(false);
 		gui.getFv().setVisible(false);
 		gui.getCe().setVisible(false);
 		gui.getFp().setVisible(false);
 		gui.getRpv().setVisible(false);
 		gui.getDt().setVisible(false);
-		gui.getCtas().setVisible(false);
+		gui.getRpd().setVisible(false);
 		
 		
-		gui.getVp().getPo().getBtnDatos().addActionListener(this);
+		gui.getVp().getPo().getBtnCompra().addActionListener(this);
 		gui.getVp().getPo().getBtnProv().addActionListener(this);
 		gui.getVp().getPg().getBtnGeneral().addActionListener(this);
 		gui.getVp().getPo().getBtnProd().addActionListener(this);
@@ -43,94 +40,91 @@ public class Controlador implements ActionListener {
 		gui.getDt().getPom1().getBtnAgregar().addActionListener(this);
 				
 		
+		gui.getRpd().getAgregar().addActionListener(this);
 		
 		gui.getRpv().getAgregar().addActionListener(this);
 		gui.getRpv().getEliminar().addActionListener(this);
-		gui.getRcl().getAgregar().addActionListener(this);
-		gui.getRcl().getEliminar().addActionListener(this);
-		/*gui.getRpro().getAgregar().addActionListener(this);
-		gui.getRpro().getAgregar().addActionListener(this);*/
-		
-		
-		
 		
 		
 		gui.getFv().getPFVPanelBotones().getContinuar().addActionListener(this);
 		gui.getFv().getPFVPanelInfo().getCliente().addActionListener(this);
+		
+		gui.getFp().getSeleccionPago().getBtnEfectivo().addActionListener(this);
+		gui.getFp().getSeleccionPago().getBtnCuotas().addActionListener(this);
+		
+		
+		gui.getRcl().getAgregar().addActionListener(this);
+		gui.getRcl().getEliminar().addActionListener(this);
+		gui.getRcl().getSeleccionar().addActionListener(this);
 	}
-	
-	
 
 	public void darDatosTienda(ActionEvent e)
 	{
 		if(e.getActionCommand().equals(gui.getDt().getPom1().AGREGAR))
 		{
-			m.getModdat().crearCarpeta(gui.getDt().getPe().getTxtNT().getText());
 			m.getModdat().crearArchivos(gui.getDt().getPe().getTxtNT().getText(), gui.getDt().getPe().getTxtTipoC().getText(),gui.getDt().getPe().getTxtNIT().getText(),  gui.getDt().getPe().getTxtCOrigen().getText(), gui.getDt().getPe().getTxtIVa().getText(), gui.getDt().getPe().getTxtTasaInteres().getText(), gui.getDt().getPe().getTxtNBanco().getText(), gui.getDt().getPe().getTxtNumCuenta().getText(), gui.getDt().getPe().getTxtNGerente().getText());
-			gui.getVp().getTituloG().setText(gui.getDt().getPe().getTxtNT().getText());
 			
 			JOptionPane.showMessageDialog(null, "Datos Ingresadors Correctamente");
 			gui.getDt().setVisible(false);
 			gui.getVp().getPg().getBtnGeneral().setEnabled(true);
 			gui.getVp().getPo().getBtnProv().setEnabled(true);
 			gui.getVp().getPo().getBtnProd().setEnabled(true);
-			gui.getVp().getPo().getBtnProv1().setEnabled(true);		
-			
+			gui.getVp().getPo().getBtnCompra().setEnabled(true);
+			gui.getVp().getTituloG().setText(gui.getDt().getPe().getTxtNT().getText());
 		}
 		
 	}
-	public boolean deshabilitarBotones()
+	public void deshabilitarBotones()
 	{
-		boolean deshabilitar = false;
-		if(m.getModdat().getConfiguracion().exists()==false)
-		{
 			gui.getVp().getPg().getBtnGeneral().setEnabled(false);
 			gui.getVp().getPo().getBtnProv().setEnabled(false);
 			gui.getVp().getPo().getBtnProd().setEnabled(false);
-			gui.getVp().getPo().getBtnProv1().setEnabled(false);		
-			JOptionPane.showMessageDialog(null, "Ingrese datos de la tienda para continuar", null, JOptionPane.WARNING_MESSAGE);
-			deshabilitar = true;
-		}
-		return deshabilitar;
+			gui.getVp().getPo().getBtnCompra().setEnabled(false);		
+			
 	}
 	public void darVenta(ActionEvent e)
 	{
 		gui.getFv().setVisible(true);
-		if(e.getActionCommand().equals(gui.getFv().getPFVPanelBotones().CONTINUAR))
+		if(e.getActionCommand().equals(gui.getFv().getPFVPanelInfo().CLIENTE))
+		{
+			gui.getRcl().setVisible(true);	
+			
+		}
+		else if(gui.getRcl().isVisible() == true)
+		{
+			darCliente(e);	
+		}
+		else if(e.getActionCommand().equals(gui.getFv().getPFVPanelBotones().CONTINUAR))
 		{
 			gui.getFp().setVisible(true);
 		}
-		
-	}
-	/*public void darProveedor(ActionEvent e)
-	{
-		//gui.getGp().setVisible(true);
-		if(e.getActionCommand().equals(gui.getGp().getPanelBotones().CREAR))
+		else if (gui.getFp().isVisible() == true)
 		{
-			gui.getRp().setVisible(true);
+			if(e.getActionCommand().equals(gui.getFp().getSeleccionPago().EFECTIVO))
+			{
+				gui.getCe().setVisible(true);
+				gui.getCe().getValores().getEspacio2().setText(String.valueOf(m.getModvent().getIVA()));
+				
+			}
+			else if(e.getActionCommand().equals(gui.getFp().getSeleccionPago().CUOTAS))
+			{
+				gui.getCu().setVisible(true);
+			}
 		}
-		else if(e.getActionCommand().equals(gui.getRp().getAgregar()))
+	}
+	public void darProveedor(ActionEvent e)
+	{
+		if(e.getActionCommand().equals(gui.getRpv().AGREGAR))
 		{
-			String NIT = gui.getRp().getNit().getText();
-			String tel = gui.getRp().getTel().getText();
-			String nombre = gui.getRp().getNom().getText();
-			String direccion = gui.getRp().getAdress().getText();
-			String ciudad = gui.getRp().getCiudad_().getText();
+			String NIT = gui.getRpv().getTextNIT().getText();
+			String tel = gui.getRpv().getTextTelefono().getText();
+			String nombre = gui.getRpv().getTextNombre().getText();
+			String direccion = gui.getRpv().getTextDireccion().getText();
+			String ciudad = gui.getRpv().getTextCiudad().getText();
 			
-			m.getModprov().agregarProveedor(NIT, nombre, direccion, tel, ciudad, m.getModdat().getP().getProperty("nombreTienda"));
-			gui.getRp().setVisible(false);
-		}
-	}*/
-	public void darProducto(ActionEvent e)
-	{
-		
-	}
-	
-	public void registrarProveedor(ActionEvent e)
-	{
-		if (e.getActionCommand().equals(gui.getRpv().AGREGAR))
-		{
 			gui.getRpv().agregarProveedor();
+			m.getModprov().agregarProveedor(NIT, nombre, direccion, tel, ciudad);
+			System.out.println(m.getModprov().getProveedores().size());
 		}
 		else if (e.getActionCommand().equals(gui.getRpv().ELIMINAR))
 		{
@@ -138,66 +132,96 @@ public class Controlador implements ActionListener {
 		}
 		
 	}
-	
-	
-	public void registrarCliente(ActionEvent e)
+	public void darProducto(ActionEvent e)
 	{
-		if (e.getActionCommand().equals(gui.getRcl().getAgregar()))
+		if (e.getActionCommand().equals(gui.getRpd().AGREGAR))
+		{
+			gui.getRpd().agregarProducto();
+		}
+		else if (e.getActionCommand().equals(gui.getRpd().ELIMINAR))
+		{
+			gui.getRpd().eliminarProducto(gui.getRpd().getMiTabla2().getSelectedRow());
+		}
+	}
+	public void darCliente(ActionEvent e)
+	{
+		if (e.getActionCommand().equals(gui.getRcl().AGREGAR))
 		{
 			gui.getRcl().agregarCliente();
+			
+			String cedula = gui.getRcl().getTextCedula().getText();
+			String nombre = gui.getRcl().getTextNombre().getText();
+			String direccion = gui.getRcl().getTextDireccion().getText();
+			String telefono = gui.getRcl().getTextTelefono().getText();
+			String email = gui.getRcl().getTextEmail().getText();
+			
+			m.getModCl().agregarCliente(cedula, nombre, direccion, telefono, email);
 		}
-		else if (e.getActionCommand().equals(gui.getRcl().getEliminar()))
+		else if (e.getActionCommand().equals(gui.getRcl().ELIMINAR))
 		{
 			gui.getRcl().eliminarCliente(gui.getRcl().getMiTabla2().getSelectedRow());
 		}
-		
+		else if(e.getActionCommand().equals(gui.getRcl().SELECCIONAR))
+		{
+			//gui.getRcl().seleccionarCliente(gui.getRcl().getMiTabla2().getSelectedRow());
+			Object cedula = gui.getRcl().getMiTabla2().getValueAt(gui.getRcl().getMiTabla2().getSelectedRow(), 0);
+			Object nombre = gui.getRcl().getMiTabla2().getValueAt(gui.getRcl().getMiTabla2().getSelectedRow(), 1);
+			Object direccion = gui.getRcl().getMiTabla2().getValueAt(gui.getRcl().getMiTabla2().getSelectedRow(), 2);
+			Object telefono = gui.getRcl().getMiTabla2().getValueAt(gui.getRcl().getMiTabla2().getSelectedRow(), 3);
+			Object email = gui.getRcl().getMiTabla2().getValueAt(gui.getRcl().getMiTabla2().getSelectedRow(), 4);
+			
+			
+			gui.getFv().getPFVPanelInfo().geteC().setText(String.valueOf(cedula));;
+			gui.getFv().getPFVPanelInfo().geteN().setText(String.valueOf(nombre));
+			gui.getFv().getPFVPanelInfo().geteD().setText(String.valueOf(direccion));
+			gui.getFv().getPFVPanelInfo().geteT().setText(String.valueOf(telefono));
+			gui.getFv().getPFVPanelInfo().geteCE().setText(String.valueOf(email));
+			
+			gui.getRcl().setVisible(false);
+			//System.out.println(gui.getRcl().getMiTabla2().getSelectedRow());
+		}
 	}
 	
-	
-	public void registrarProducto(ActionEvent e)
-	{
-		if (e.getActionCommand().equals(gui.getRpro().AGREGAR))
-		{
-			gui.getRpro().agregarProducto();
-		}
-		else if (e.getActionCommand().equals(gui.getRpro().ELIMINAR))
-		{
-			gui.getRpro().eliminarProducto(gui.getRpro().getMiTabla2().getSelectedRow());
-		}
-		
-	}
-	
-	
+	@Override
 	public void actionPerformed(ActionEvent e)
 	
 	{
-		if (e.getActionCommand().equals(gui.getVp().getPo().DATOS)) 
+		if(m.getModdat().getConfiguracion().exists() == false)
 		{
-			gui.getDt().setVisible(true);
-			darDatosTienda(e);
-		}
-		else if(e.getActionCommand().equals(gui.getVp().getPg().BUTG))
+				deshabilitarBotones();
+				JOptionPane.showMessageDialog(null, "Ingrese datos de la tienda para continuar", null, JOptionPane.WARNING_MESSAGE);
+				gui.getDt().setVisible(true);
+				darDatosTienda(e);	
+		}		
+		else
 		{
-			gui.getFv().setVisible(true);			
+			
+			if(e.getActionCommand().equals(gui.getVp().getPg().BUTG))
+			{
+				gui.getFv().setVisible(true);
+				gui.getFv().getPFVPanelInfo().getEspacioNumFactura().setText(String.valueOf(m.getModfact().darConsecutivo()));				
+			}
+			else if(gui.getFv().isVisible() == true)
+			{
+				darVenta(e);
+			}
+			else if(e.getActionCommand().equals(gui.getVp().getPo().PROV))
+			{
+				gui.getRpv().setVisible(true);
+			}
+			darProveedor(e);
+			if(e.getActionCommand().equals(gui.getVp().getPo().PROD))
+			{
+				gui.getRpd().setVisible(true);
+			}
+			darProducto(e);
+			if(e.getActionCommand().equals(gui.getVp().getPo().COMPRA))
+			{
+				
+			}
 		}
-		else if(e.getActionCommand().equals(gui.getFv().getPFVPanelInfo().CLIENTE))
-		{
-			gui.getRcl().setVisible(true);		
-		}
-		registrarCliente(e);
-
-		if(e.getActionCommand().equals(gui.getVp().getPo().PROV))
-		{
-			gui.getRpv().setVisible(true);
-		}
-		registrarProveedor(e);
-		
-		if(e.getActionCommand().equals(gui.getVp().getPo().PROD))
-		{
-			gui.getRpro().setVisible(true);
-		}
-		registrarProducto(e);
 	}
+
 	
 	
 }

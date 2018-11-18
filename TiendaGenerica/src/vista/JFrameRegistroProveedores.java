@@ -14,8 +14,8 @@ import javax.swing.table.DefaultTableModel;
 public class JFrameRegistroProveedores extends JFrame 
 {
 
-	public static final String AGREGAR = "Agregar";
-	public static final String ELIMINAR = "Eliminar";
+	public static final String AGREGAR = "AgregarPv";
+	public static final String ELIMINAR = "EliminarPv";
 	private static final long serialVersionUID = 1L;
 	private JButton agregar, eliminar, borrar;
 	private JLabel labelTitulo, mensaje;
@@ -31,7 +31,6 @@ public class JFrameRegistroProveedores extends JFrame
 		setTitle("Proveedores");
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
 		
 		nit = new JLabel();
@@ -309,8 +308,4 @@ public class JFrameRegistroProveedores extends JFrame
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	
-	
-	
 }

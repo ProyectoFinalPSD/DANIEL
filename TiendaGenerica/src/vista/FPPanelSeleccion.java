@@ -28,6 +28,23 @@ import javax.swing.JCheckBox;
 			add(btnEfectivo);
 			add(btnCuotas);
 		}
+
+		public JButton getBtnEfectivo() {
+			return btnEfectivo;
+		}
+
+		public void setBtnEfectivo(JButton btnEfectivo) {
+			this.btnEfectivo = btnEfectivo;
+		}
+
+		public JButton getBtnCuotas() {
+			return btnCuotas;
+		}
+
+		public void setBtnCuotas(JButton btnCuotas) {
+			this.btnCuotas = btnCuotas;
+		}
+		
 		
 		
 	

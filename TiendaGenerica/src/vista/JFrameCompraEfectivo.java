@@ -14,11 +14,21 @@ public class JFrameCompraEfectivo extends JFrame
 		setSize(300,300);
 		setResizable(false);
 		setTitle("VALIDAR COMPRA");
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setLayout(new BorderLayout());
 		
 		valores =  new CEPanelValores();
 		add(valores);		
 	}
+
+
+	public CEPanelValores getValores() {
+		return valores;
+	}
+
+
+	public void setValores(CEPanelValores valores) {
+		this.valores = valores;
+	}
+	
 }		

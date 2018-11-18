@@ -60,4 +60,93 @@ public class CEPanelValores extends JPanel
 		add(validar);
 	}
 
+	public JLabel getEtiqueta1() {
+		return etiqueta1;
+	}
+
+	public void setEtiqueta1(JLabel etiqueta1) {
+		this.etiqueta1 = etiqueta1;
+	}
+
+	public JLabel getEtiqueta2() {
+		return etiqueta2;
+	}
+
+	public void setEtiqueta2(JLabel etiqueta2) {
+		this.etiqueta2 = etiqueta2;
+	}
+
+	public JLabel getEtiqueta3() {
+		return etiqueta3;
+	}
+
+	public void setEtiqueta3(JLabel etiqueta3) {
+		this.etiqueta3 = etiqueta3;
+	}
+
+	public JLabel getEtiqueta4() {
+		return etiqueta4;
+	}
+
+	public void setEtiqueta4(JLabel etiqueta4) {
+		this.etiqueta4 = etiqueta4;
+	}
+
+	public JLabel getEtiqueta5() {
+		return etiqueta5;
+	}
+
+	public void setEtiqueta5(JLabel etiqueta5) {
+		this.etiqueta5 = etiqueta5;
+	}
+
+	public JTextField getEspacio1() {
+		return espacio1;
+	}
+
+	public void setEspacio1(JTextField espacio1) {
+		this.espacio1 = espacio1;
+	}
+
+	public JTextField getEspacio2() {
+		return espacio2;
+	}
+
+	public void setEspacio2(JTextField espacio2) {
+		this.espacio2 = espacio2;
+	}
+
+	public JTextField getEspacio3() {
+		return espacio3;
+	}
+
+	public void setEspacio3(JTextField espacio3) {
+		this.espacio3 = espacio3;
+	}
+
+	public JTextField getEspacio4() {
+		return espacio4;
+	}
+
+	public void setEspacio4(JTextField espacio4) {
+		this.espacio4 = espacio4;
+	}
+
+	public JTextField getEspacio5() {
+		return espacio5;
+	}
+
+	public void setEspacio5(JTextField espacio5) {
+		this.espacio5 = espacio5;
+	}
+
+	public JButton getValidar() {
+		return validar;
+	}
+
+	public void setValidar(JButton validar) {
+		this.validar = validar;
+	}
+	
+
 }

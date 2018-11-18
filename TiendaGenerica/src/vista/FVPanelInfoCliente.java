@@ -11,12 +11,12 @@ import javax.swing.JTextField;
 
 public class FVPanelInfoCliente extends JPanel 
 {
-	private static final long serialVersionUID = 1L;
+	private static long serialVersionUID = 1L;
 	private Calendar calendario;
 	private JTextField espacioNumFactura,eC,eN,eD,eT,eCE, numProductosVender;
 	private JLabel fecha, numFactura,cedula,nombre,direccion, telefono,Email,productos;
 	private JButton cliente;
-	public static final String CLIENTE = "CLIENTE";
+	public static String CLIENTE = "CLiente";
 
 	public FVPanelInfoCliente()
 	{
@@ -111,6 +111,14 @@ public class FVPanelInfoCliente extends JPanel
 		add(numProductosVender);
 		
 
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public static void setSerialversionuid(long serialversionuid) {
+		serialVersionUID = serialversionuid;
 	}
 
 	public Calendar getCalendario() {
@@ -241,6 +249,10 @@ public class FVPanelInfoCliente extends JPanel
 		this.productos = productos;
 	}
 
+	public static void setCliente(String cliente) {
+		CLIENTE = cliente;
+	}
+
 	public JButton getCliente() {
 		return cliente;
 	}
@@ -248,11 +260,6 @@ public class FVPanelInfoCliente extends JPanel
 	public void setCliente(JButton cliente) {
 		this.cliente = cliente;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	
-
+	
 }

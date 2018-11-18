@@ -11,8 +11,8 @@ import javax.swing.table.DefaultTableModel;
 public class JFrameCuotas extends JFrame
 {
 
-	private JLabel monto, tasaInteres, plazo;
-	private JTextField Monto, tasa, Plazo;
+	private JLabel labMonto, labTasaInteres, labPlazo;
+	private JTextField txtMonto, txtTasa, txtPlazo;
 	private JTable tablaAmortizacion;
 	private DefaultTableModel model;
 	private JButton confirmar, nuevo;
@@ -26,35 +26,34 @@ public class JFrameCuotas extends JFrame
 		setTitle("Registro de cuotas");
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
 	
 		tablaAmortizacion = new JTable();
 		
-		monto = new JLabel();
-		monto.setText("Monto a financiar");
-		monto.setBounds(20, 80, 100, 25);
-		add(monto);
+		labMonto = new JLabel();
+		labMonto.setText("Monto a financiar");
+		labMonto.setBounds(20, 80, 100, 25);
+		add(labMonto);
 		
-		Monto = new JTextField();
-		Monto.setBounds(150, 80, 100, 25);
-		add(Monto);
+		txtMonto = new JTextField();
+		txtMonto.setBounds(150, 80, 100, 25);
+		add(txtMonto);
 		
-		tasaInteres = new JLabel();
-		tasaInteres.setText("Tasa de interés");
-		tasaInteres.setBounds(20, 50, 100, 25);
+		labTasaInteres = new JLabel();
+		labTasaInteres.setText("Tasa de interés");
+		labTasaInteres.setBounds(20, 50, 100, 25);
 		
-		tasa = new JTextField();
-		tasa.setBounds(150, 50, 100, 25);
-		add(tasa);
+		txtTasa = new JTextField();
+		txtTasa.setBounds(150, 50, 100, 25);
+		add(txtTasa);
 		
-		plazo = new JLabel();
-		plazo.setText("Plazo");
-		plazo.setBounds(20, 20, 80, 25);
+		labPlazo = new JLabel();
+		labPlazo.setText("Plazo");
+		labPlazo.setBounds(20, 20, 80, 25);
 		
-		Plazo = new JTextField();
-		Plazo.setBounds(150, 20, 100, 25);
-		add(Plazo);
+		txtPlazo = new JTextField();
+		txtPlazo.setBounds(150, 20, 100, 25);
+		add(txtPlazo);
 		
 		confirmar = new JButton("Confirmar");
 		confirmar.setActionCommand(CONFIRMAR);
@@ -80,11 +79,111 @@ public class JFrameCuotas extends JFrame
 		Barra.setViewportView(tablaAmortizacion);
 		
 		
-		add(monto);
-		add(tasaInteres);
-		add(plazo);
+		add(labMonto);
+		add(labTasaInteres);
+		add(labPlazo);
 		add(Barra);
 		
 	}
+
+
+	public JLabel getLabMonto() {
+		return labMonto;
+	}
+
+
+	public void setLabMonto(JLabel labMonto) {
+		this.labMonto = labMonto;
+	}
+
+
+	public JLabel getLabTasaInteres() {
+		return labTasaInteres;
+	}
+
+
+	public void setLabTasaInteres(JLabel labTasaInteres) {
+		this.labTasaInteres = labTasaInteres;
+	}
+
+
+	public JLabel getLabPlazo() {
+		return labPlazo;
+	}
+
+
+	public void setLabPlazo(JLabel labPlazo) {
+		this.labPlazo = labPlazo;
+	}
+
+
+	public JTextField getTxtMonto() {
+		return txtMonto;
+	}
+
+
+	public void setTxtMonto(JTextField txtMonto) {
+		this.txtMonto = txtMonto;
+	}
+
+
+	public JTextField getTxtTasa() {
+		return txtTasa;
+	}
+
+
+	public void setTxtTasa(JTextField txtTasa) {
+		this.txtTasa = txtTasa;
+	}
+
+
+	public JTextField getTxtPlazo() {
+		return txtPlazo;
+	}
+
+
+	public void setTxtPlazo(JTextField txtPlazo) {
+		this.txtPlazo = txtPlazo;
+	}
+
+
+	public JTable getTablaAmortizacion() {
+		return tablaAmortizacion;
+	}
+
+
+	public void setTablaAmortizacion(JTable tablaAmortizacion) {
+		this.tablaAmortizacion = tablaAmortizacion;
+	}
+
+
+	public DefaultTableModel getModel() {
+		return model;
+	}
+
+
+	public void setModel(DefaultTableModel model) {
+		this.model = model;
+	}
+
+
+	public JButton getConfirmar() {
+		return confirmar;
+	}
+
+
+	public void setConfirmar(JButton confirmar) {
+		this.confirmar = confirmar;
+	}
+
+
+	public JButton getNuevo() {
+		return nuevo;
+	}
+
+
+	public void setNuevo(JButton nuevo) {
+		this.nuevo = nuevo;
+	}	
 	
 }

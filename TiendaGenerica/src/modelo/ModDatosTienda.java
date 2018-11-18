@@ -14,14 +14,14 @@ import javax.swing.JOptionPane;
 
 public class ModDatosTienda {
 	
-	//private Parametros pa;
+	//Atributos
 	private Properties p;
-	private File carpetaC;
 	File configuracion;
 	
 	public ModDatosTienda()
-	{
-		
+	{ 
+		//Ruta donde se guardaran los datos de la tienda
+		configuracion = new File ("./data/configuracion.properties");
 	}
 	
 
@@ -34,25 +34,10 @@ public class ModDatosTienda {
 		this.p = p;
 	}
 
-
-	public boolean crearCarpeta(String nombreTienda)
-	{
-		boolean crear = false;
-		if(crear == false)
-		{
-			String carpeta= "./"+nombreTienda;
-			carpetaC = new File(carpeta);
-			carpetaC.mkdirs();
-			crear = true;
-			
-		}
-		return crear;
-	}
+//Método que crea las caracteristicas de la tienda
 	public void crearArchivos(String nombreTienda, String tipoComercio, String NIT, String ciudadOrigen, String valorIva, String tasaInteres, String nombreBanco, String numeroCuenta,String nombreGerente)
 	{
 		try {
-		crearCarpeta(nombreTienda);
-		configuracion = new File ("./"+nombreTienda+"/configuracion.properties");
 		configuracion.createNewFile();
 		FileInputStream fs = new FileInputStream(configuracion);
 		p = new Properties();
@@ -79,41 +64,22 @@ public class ModDatosTienda {
 			System.out.println("Error");
 		}
 	}
-	public boolean existeCarpeta(String nombre)
-	{
-		boolean existe = false;
-		crearCarpeta(nombre);
-		if(carpetaC.exists() == true)
-		{
-			existe = true;
-		}
-	
-		
-		return existe;
-	}
 	public void getProp()
 	{
 		
 	}
+	
+	//Método que carga las caracterisiticas de la tienda.
 	public boolean cargarArchivos(String nombreTienda, String pregunta)
 	{
 		boolean cargar = false;
 		
-		boolean existe = existeCarpeta(nombreTienda);
-		
-		if (existe == true) 
-		{
 			p.getProperty("nombreTienda");
 			if(nombreTienda.equalsIgnoreCase(pregunta) )
 			{
 				cargar = true;
 			}
-		} 
-		else 
-		{
-
-		}
-		return cargar;
+			return cargar;
 	}
 
 

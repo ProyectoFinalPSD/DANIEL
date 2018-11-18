@@ -35,7 +35,7 @@ public class VPPanelBotonGenerarVenta extends JPanel
 		btnGeneral.setForeground(Color.BLACK);
 		btnGeneral.setBackground(Color.WHITE);
 		btnGeneral.setFont(txtBtn.getFont());
-		btnGeneral.setBounds(165, 65, 150, 60);
+		btnGeneral.setBounds(165, 50, 150, 60);
 		
 		
 		add(btnGeneral);

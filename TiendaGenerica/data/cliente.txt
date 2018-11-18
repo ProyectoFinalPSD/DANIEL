@@ -1,0 +1,5 @@
+Nombre: 
+Cédula: 
+Dirección: 
+Télefono: 
+Corre electronico: 

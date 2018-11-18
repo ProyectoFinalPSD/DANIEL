@@ -18,7 +18,7 @@ public class JFrameFacturaVenta extends JFrame
 		setSize(470,700);
 		setResizable(false);
 		setTitle("FACTURA DE VENTA");
-		setLocationRelativeTo(null);
+		//setLocationRelativeTo();
 		setLayout(null);
 		
 		PFVPanelInfo = new FVPanelInfoCliente();

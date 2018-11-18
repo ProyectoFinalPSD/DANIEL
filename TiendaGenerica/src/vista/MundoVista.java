@@ -9,24 +9,22 @@ public class MundoVista {
 	private JFrameDatosTienda dt;
 	private JFrameFormasPago fp;
 	private JFrameCompraEfectivo ce;
+	private JFrameRegistroProductos rpd;
 	private JFrameRegistroClientes rcl;
-	private JFrameRegistroProductos rpro;
-	private JFrameCheque che;
-	private JFrameCuotas ctas;
+	private JFrameCuotas cu;
+
 	
 	public MundoVista()
 	{
-		ctas =  new JFrameCuotas();
-		che =  new JFrameCheque();
-		rpro =  new JFrameRegistroProductos();
-		rcl =  new JFrameRegistroClientes();
 		vp = new JFrameVentanaPrincipal();		
 		rpv = new JFrameRegistroProveedores();
 		dt = new JFrameDatosTienda();
 		fv = new JFrameFacturaVenta();
 		fp = new JFrameFormasPago();
 		ce = new JFrameCompraEfectivo();
-		
+		rpd = new JFrameRegistroProductos();
+		rcl = new JFrameRegistroClientes();
+		setCu(new JFrameCuotas());
 	}
 
 	public JFrameVentanaPrincipal getVp() {
@@ -73,6 +71,18 @@ public class MundoVista {
 		this.ce = ce;
 	}
 
+	public JFrameRegistroProductos getRpd() {
+		return rpd;
+	}
+
+	public void setRpd(JFrameRegistroProductos rpd) {
+		this.rpd = rpd;
+	}
+
+	public void setVp(JFrameVentanaPrincipal vp) {
+		this.vp = vp;
+	}
+
 	public JFrameRegistroClientes getRcl() {
 		return rcl;
 	}
@@ -81,32 +91,12 @@ public class MundoVista {
 		this.rcl = rcl;
 	}
 
-	public JFrameRegistroProductos getRpro() {
-		return rpro;
+	public JFrameCuotas getCu() {
+		return cu;
 	}
 
-	public void setRpro(JFrameRegistroProductos rpro) {
-		this.rpro = rpro;
-	}
-
-	public void setVp(JFrameVentanaPrincipal vp) {
-		this.vp = vp;
-	}
-
-	public JFrameCheque getChe() {
-		return che;
-	}
-
-	public void setChe(JFrameCheque che) {
-		this.che = che;
-	}
-
-	public JFrameCuotas getCtas() {
-		return ctas;
-	}
-
-	public void setCtas(JFrameCuotas ctas) {
-		this.ctas = ctas;
+	public void setCu(JFrameCuotas cu) {
+		this.cu = cu;
 	}
 	
 
